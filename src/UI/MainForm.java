@@ -1,9 +1,11 @@
 package UI;
 
+import Model.SimpleFileFilter;
 import Model.SrtFile;
 import Model.SrtParser;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -16,6 +18,7 @@ public class MainForm{
     private JButton btnSave;
     private JTextField txtSincronization;
     private JLabel lblSubName;
+    private JCheckBox chkWriteBOM;
     private SrtFile srt;
 
     public MainForm() {
@@ -57,12 +60,16 @@ public class MainForm{
         }
 
         JFileChooser chooser = new JFileChooser();
+        FileFilter filter = new SimpleFileFilter(".srt","Subtitle File (.srt)");
+        chooser.addChoosableFileFilter(filter);
+        chooser.setFileFilter(filter);
+
         int ret = chooser.showSaveDialog(panel);
 
         if (ret == JFileChooser.APPROVE_OPTION) {
 
             try{
-                srt.writeToFile(chooser.getSelectedFile(),sync);
+                srt.writeToFile(chooser.getSelectedFile(),sync, chkWriteBOM.isSelected());
             }catch(IOException ex){
                 JOptionPane.showMessageDialog(panel, "Error al guardar archivo");
             }
@@ -73,6 +80,9 @@ public class MainForm{
     private void loadSrt(){
 
         JFileChooser chooser = new JFileChooser();
+        FileFilter filter = new SimpleFileFilter(".srt","Subtitle File (.srt)");
+        chooser.addChoosableFileFilter(filter);
+        chooser.setFileFilter(filter);
 
         int ret = chooser.showOpenDialog(panel);
 

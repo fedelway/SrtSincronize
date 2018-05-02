@@ -12,10 +12,17 @@ public class SrtFile {
         subtitleList.add(sub);
     }
 
-    public void writeToFile(File file, long sync) throws IOException {
+    public void writeToFile(File file, long sync, boolean writeBOM) throws IOException {
 
+        FileOutputStream outputStream = new FileOutputStream(file);
         BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+                new OutputStreamWriter(outputStream));
+
+        if(writeBOM){
+            byte[] bom = new byte[3];
+            bom[0] = -17; bom[1] = -69; bom[2] = -65;
+            outputStream.write(bom);
+        }
 
         for(int i=0; i<subtitleList.size(); i++){
             Subtitle sub = subtitleList.get(i);
