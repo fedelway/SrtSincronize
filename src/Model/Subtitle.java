@@ -14,10 +14,10 @@ public class Subtitle {
 
     private String createTimeStamp(long time){
 
-        Long milis = start%1000;
-        Long secs = (start/1000)%100;
-        Long mins = (start/100000)%100;
-        Long hour = (start/10000000)%100;
+        Long milis = time%1000;
+        Long secs = (time/1000)%100;
+        Long mins = (time/100000)%100;
+        Long hour = (time/10000000)%100;
 
         return hour.toString() + ":" + mins.toString() + ":" + secs.toString() + "," + Strings.padStart(milis.toString(),3,'0');
     }

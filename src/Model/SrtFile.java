@@ -34,6 +34,7 @@ public class SrtFile {
         }
 
         writer.flush();
+        writer.close();
     }
 
 }

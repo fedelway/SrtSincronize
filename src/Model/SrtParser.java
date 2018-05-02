@@ -25,6 +25,7 @@ public class SrtParser {
             res = parseIndividualSub(reader,srt);
         }
 
+        reader.close();
         return srt;
     }
 
