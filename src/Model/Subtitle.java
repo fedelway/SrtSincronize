@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.common.base.Strings;
+
 public class Subtitle {
 
     public long start;
@@ -17,6 +19,6 @@ public class Subtitle {
         Long mins = (start/100000)%100;
         Long hour = (start/10000000)%100;
 
-        return hour.toString() + ":" + mins.toString() + ":" + secs.toString() + "," + milis;
+        return hour.toString() + ":" + mins.toString() + ":" + secs.toString() + "," + Strings.padStart(milis.toString(),3,'0');
     }
 }

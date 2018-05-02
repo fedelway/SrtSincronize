@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.gdata.util.io.base.UnicodeReader;
+
 import java.io.*;
 
 public class SrtParser {
@@ -14,7 +16,8 @@ public class SrtParser {
         SrtFile srt = new SrtFile();
 
         BufferedReader reader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(file), "UTF-8"));
+                //new InputStreamReader(new FileInputStream(file), "UTF-8"));
+                new UnicodeReader(new FileInputStream(file),"UTF-8"));
 
         ParseResult res = parseIndividualSub(reader,srt);
 
