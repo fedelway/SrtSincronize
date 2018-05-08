@@ -93,7 +93,9 @@ public class SrtParser {
 
         milis += Long.parseLong(lastPart[1]);
 
-        return milis;
+        if(milis < 0)
+            return 0;
+        else return milis;
     }
 
     private boolean isNumber(String string){
